@@ -169,6 +169,66 @@
     font-size:16.5px;line-height:1.75;opacity:.82;
   }
 
+  .about-sub{max-width:52ch;margin:16px auto 0;text-align:center;font-size:15px;line-height:1.7;opacity:.72}
+
+  /* ---------- playbook ---------- */
+  .playbook{max-width:1000px;margin:clamp(40px,6vw,64px) auto 0}
+  .pb-stage{position:relative;overflow:hidden;height:var(--pbh,560px);transition:height .5s cubic-bezier(.4,0,.1,1)}
+  .pb-track{display:flex;height:100%;transition:transform .6s cubic-bezier(.45,0,.1,1)}
+  .pb-page{flex:0 0 100%;min-width:0;display:flex;align-items:center}
+  .pb-page .pb-inner{width:100%}
+
+  .frame{display:block;width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--line);
+    box-shadow:0 26px 50px -30px rgba(68,0,0,.5);background:var(--paper)}
+  .frame img{display:block;width:100%;height:100%;object-fit:cover}
+
+  /* portrait pages: photo beside text */
+  .pb-page.port .pb-inner{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(28px,4vw,60px);align-items:center}
+  .pb-page.port.flip .pb-photo{order:2}
+  .pb-page.port .frame{aspect-ratio:4/5;max-width:370px;margin:0 auto}
+
+  /* wide pages: photo above text */
+  .pb-page.wide .pb-inner{display:flex;flex-direction:column;gap:clamp(20px,3vw,30px)}
+  .pb-page.wide .frame{aspect-ratio:16/9;width:100%}
+  .pb-page.wide .pb-copy{max-width:66ch;margin:0 auto;text-align:center}
+
+  .pb-kick{display:flex;align-items:center;gap:14px;margin:0 0 14px}
+  .pb-page.wide .pb-kick{justify-content:center}
+  .pb-kick b{font-family:var(--f-display);font-weight:var(--disp-w);font-size:clamp(28px,3.4vw,44px);color:var(--brand);line-height:.9}
+  .pb-kick span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--brand-deep);padding-left:14px;border-left:1px solid var(--line)}
+  .pb-copy h3{font-family:var(--f-display);font-weight:var(--disp-w);font-size:clamp(24px,3vw,38px);line-height:1.08;margin:0 0 14px}
+  .pb-copy p{font-size:15px;line-height:1.78;opacity:.85;margin:0 0 12px}
+  .pb-copy p:last-child{margin:0}
+  .pb-copy .em{color:var(--brand-deep);font-weight:600}
+  .pb-copy .emi{color:var(--brand-deep);font-style:italic}
+  .pb-page.cover .pb-inner{max-width:60ch;margin:0 auto;text-align:center;padding:clamp(8px,3vw,28px) 4px}
+  .pb-page.cover .pb-kick{justify-content:center;margin-bottom:18px}
+  .pb-page.cover h3{font-size:clamp(30px,4.8vw,58px);line-height:1.04;margin:0 0 22px}
+  .pb-page.cover p{font-size:clamp(15.5px,1.6vw,18px);max-width:52ch;margin:0 auto 14px;opacity:.86}
+  .pb-page.cover .hint{margin-top:6px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--brand-deep);opacity:.8}
+
+  @media(max-width:760px){
+    .pb-page.port .pb-inner{grid-template-columns:1fr;gap:20px}
+    .pb-page.port.flip .pb-photo{order:0}
+    .pb-page.port .frame{max-width:300px}
+    .pb-page.wide .pb-copy{text-align:left}
+    .pb-page.wide .pb-kick{justify-content:flex-start}
+  }
+
+  /* nav */
+  .pb-nav{display:flex;align-items:center;justify-content:center;gap:clamp(14px,2vw,22px);margin-top:clamp(26px,4vw,38px)}
+  .pb-btn{all:unset;box-sizing:border-box;cursor:pointer;width:44px;height:44px;border-radius:50%;
+    border:1.5px solid var(--ink);display:grid;place-items:center;transition:background .2s,border-color .2s,opacity .2s}
+  .pb-btn svg{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .pb-btn:hover,.pb-btn:focus-visible{background:var(--brand);border-color:var(--brand);outline:none}
+  .pb-btn:hover svg,.pb-btn:focus-visible svg{stroke:#fff}
+  .pb-btn[disabled]{opacity:.28;cursor:default;pointer-events:none}
+  .pb-dots{display:flex;gap:9px}
+  .pb-dot{all:unset;box-sizing:border-box;cursor:pointer;width:9px;height:9px;border-radius:50%;background:var(--line);transition:background .25s,transform .25s}
+  .pb-dot[aria-current="true"]{background:var(--brand);transform:scale(1.25)}
+  .pb-count{font-family:var(--f-display);font-weight:var(--disp-w);font-size:19px;color:var(--ink);min-width:62px;text-align:center;letter-spacing:.04em}
+  .pb-count i{color:var(--brand);font-style:normal}
+  @media(max-width:520px){.pb-dots{display:none}}
 
   .daynight{
     display:grid;grid-template-columns:1fr 1fr;gap:1px;
@@ -337,7 +397,7 @@
   .work .eyebrow::before,.work .eyebrow::after{content:"";width:28px;height:1.5px;background:var(--pink)}
   .work h2{font-family:var(--f-display);font-weight:var(--disp-w);font-size:clamp(34px,5.4vw,58px);line-height:1.04;margin:18px 0 0}
   .work .sub{font-size:15.5px;line-height:1.7;opacity:.8;margin:16px auto 0;max-width:52ch}
-  .bgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1080px;margin:clamp(36px,5vw,56px) auto 0}
+  .bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1080px;margin:clamp(36px,5vw,56px) auto 0}
   @media (max-width:860px){.bgrid{grid-template-columns:repeat(2,1fr)}}
   .bbtn{
     --b:#333;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;
@@ -350,6 +410,23 @@
   .bbtn .cat{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--night);opacity:.5}
   .bbtn .lg{display:block;color:var(--b);line-height:1}
   .bbtn .lg-img{display:block;width:84%;max-width:220px;height:auto}
+  .bbtn .lg-txt{font-family:var(--f-body);font-weight:700;font-size:clamp(20px,2.3vw,28px);color:var(--b);line-height:1;letter-spacing:.01em}
+  .bbtn.dark{background:#10140D;border-color:#10140D}
+  .bbtn.dark .cat{color:#B1FA63;opacity:.85}
+  .bbtn .st .go{font-style:normal;color:#fff;background:var(--b);border:1px solid var(--b);border-radius:999px;padding:6px 14px;white-space:nowrap;letter-spacing:.1em}
+  .bbtn.dark .st .go{background:#B1FA63;border-color:#B1FA63;color:#10140D}
+  .bbtn.live:hover,.bbtn.live:focus-visible{transform:translateY(-4px)}
+  .deck{position:fixed;inset:0;z-index:300;background:rgba(14,18,11,.97);display:flex;flex-direction:column}
+  .deck[hidden]{display:none}
+  .deck-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,4vw,40px);border-bottom:1px solid rgba(255,255,255,.14);padding-top:calc(14px + env(safe-area-inset-top,0px))}
+  .deck-ttl{color:#B1FA63;font-family:var(--f-body);font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:12px}
+  .deck-x{all:unset;cursor:pointer;width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);color:#fff;display:grid;place-items:center;font-size:24px;line-height:1;flex:none}
+  .deck-x:hover,.deck-x:focus-visible{background:#B1FA63;color:#10140D;border-color:#B1FA63;outline:none}
+  .deck-body{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:clamp(16px,3vw,34px);display:flex;flex-direction:column;gap:16px;align-items:center}
+  .deck-body img{width:min(960px,100%);height:auto;border-radius:8px;box-shadow:0 20px 50px -24px rgba(0,0,0,.7);background:#fff;display:block}
+  body.deck-open{overflow:hidden}
+  .bbtn .lg-logo{display:block;width:72%;max-width:190px;height:auto}
+  .bbtn .lg-badge{display:block;width:84px;height:84px;object-fit:contain}
   .bbtn .st{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
   .bbtn .st i{font-style:normal;color:var(--b);border:1px solid currentColor;border-radius:999px;padding:5px 10px;white-space:nowrap;opacity:.85}
   .bbtn.flash{animation:flash 1.6s ease}
@@ -494,7 +571,7 @@
   </nav>
   <form class="search" role="search" autocomplete="off">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input id="rs" type="search" placeholder="Search a brand assignment" aria-label="Search brand assignments">
+    <input id="rs" type="search" placeholder="Search a brand" aria-label="Search independent work">
     <ul class="sdrop" id="sdrop" hidden></ul>
   </form>
 </header>
@@ -516,44 +593,131 @@
 <section class="about" id="about">
   <p class="eyebrow">About me</p>
   <h2 class="about-title">Heyya, I'm <span class="pink">Avira Bedi</span></h2>
-  <p class="about-lede">A creative Aquarius, currently learning D2C branding from scratch at Hive School of Business.</p>
+  <p class="about-sub">My story, as a playbook. Turn the page.</p>
 
+  <div class="playbook" id="pb">
+    <div class="pb-stage" id="pbStage">
+      <div class="pb-track" id="pbTrack">
 
-  <div class="daynight">
-    <div class="dn-card">
-      <svg class="icon" viewBox="0 0 48 48" fill="none">
-        <circle cx="24" cy="24" r="10" fill="var(--brand)"/>
-        <g stroke="var(--night)" stroke-width="2.4" stroke-linecap="round">
-          <line x1="24" y1="2" x2="24" y2="9"/>
-          <line x1="24" y1="39" x2="24" y2="46"/>
-          <line x1="2" y1="24" x2="9" y2="24"/>
-          <line x1="39" y1="24" x2="46" y2="24"/>
-          <line x1="8.2" y1="8.2" x2="13.3" y2="13.3"/>
-          <line x1="34.7" y1="34.7" x2="39.8" y2="39.8"/>
-          <line x1="8.2" y1="39.8" x2="13.3" y2="34.7"/>
-          <line x1="34.7" y1="13.3" x2="39.8" y2="8.2"/>
-        </g>
-      </svg>
-      <p class="label">01 · By day</p>
-      <h3>Studying the decks</h3>
-      <p>Mostly occupied with studying creative decks to learn what <span class="term">CPM</span>, <span class="term">CTR</span>, <span class="term">hold rate</span>, <span class="term">hook rate</span> and <span class="term">branded search</span> actually mean in practice.</p>
+        <article class="pb-page port">
+          <div class="pb-inner">
+            <div class="pb-photo"><span class="frame"><img src="childhood.jpg" alt="Avira as a child" loading="lazy"></span></div>
+            <div class="pb-copy">
+              <p class="pb-kick"><b>01</b><span>The beginning · 2005</span></p>
+              <h3>A creative kid in a practical world</h3>
+              <p>If you're here, someone probably sent you this with the quiet motive of getting me hired. But before the brands and the corporate stuff, a proper introduction.</p>
+              <p>I was born on 16 February 2005 in Moradabad, and I've been creatively inclined for as long as I can remember. Give me a school project, a dance or a presentation, anything I could <span class="em">create</span>, and suddenly I cared a lot.</p>
+              <p>For a long time, I thought growing up meant setting that aside for something "practical."</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="pb-page wide">
+          <div class="pb-inner">
+            <div class="pb-photo"><span class="frame"><img src="mydigital.jpg" alt="Avira on the Mydigital.io site" loading="lazy"></span></div>
+            <div class="pb-copy">
+              <p class="pb-kick"><b>02</b><span>The ₹10,000 bet · COVID</span></p>
+              <h3>Then the world paused, and I started</h3>
+              <p>Class 10, boards on hold, too much time to think. I found content marketing while scrolling Instagram and asked my parents for ₹10,000 to buy a course. They trusted me with it.</p>
+              <p>I learnt content writing, copywriting and social media, then found my first client. By Class 11 I was living two lives: school by day, <span class="em">freelance by night</span>, writing SaaS, lifestyle and beauty blogs for nearly two years.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="pb-page port flip">
+          <div class="pb-inner">
+            <div class="pb-photo"><span class="frame"><img src="nikhil.jpg" alt="Avira with Nikhil, founder of Hive School" loading="lazy"></span></div>
+            <div class="pb-copy">
+              <p class="pb-kick"><b>03</b><span>The real question</span></p>
+              <h3>From writing words to building brands</h3>
+              <p>College took me from writing into social media marketing, running calendars and socials for everyone from a celebrity health coach to an EdTech founder.</p>
+              <p>Different brands, different audiences, different stories. That's when one question took over: <span class="emi">what makes someone care about a brand?</span></p>
+              <p>A few years later, it led me to Hive School.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="pb-page wide">
+          <div class="pb-inner">
+            <div class="pb-photo"><span class="frame"><img src="winday.jpg" alt="The Hive D2C Grand Bazaar cohort" loading="lazy"></span></div>
+            <div class="pb-copy">
+              <p class="pb-kick"><b>04</b><span>The build · Toemahtoe</span></p>
+              <h3>Thirty days, one sock brand, a pitch we won</h3>
+              <p>At Hive's D2C Sprint, my co-founders and I built <span class="em">Toemahtoe</span>, a quirky D2C socks brand, from product and positioning to content, acquisition and the brand itself.</p>
+              <p>We won the investor pitch at Hive's D2C Grand Bazaar.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="pb-page wide">
+          <div class="pb-inner">
+            <div class="pb-photo"><span class="frame" style="aspect-ratio:16/12"><img src="team.jpg" alt="The Toemahtoe founding team" loading="lazy" style="object-position:center 78%"></span></div>
+            <div class="pb-copy">
+              <p class="pb-kick"><b>05</b><span>When it clicked</span></p>
+              <h3>The same thing, all along</h3>
+              <p>Somewhere in those thirty days, everything clicked. The girl who loved school projects, the teenager writing blogs after tuition, the freelancer building calendars and the founder building a brand were all chasing the same thing.</p>
+              <p>I just took a very long route to realise it was <span class="em">branding.</span></p>
+            </div>
+          </div>
+        </article>
+
+        <article class="pb-page wide">
+          <div class="pb-inner">
+            <div class="pb-photo"><span class="frame" style="aspect-ratio:7/5"><img src="socks.jpg" alt="Avira at work on Toemahtoe" loading="lazy" style="object-position:center 35%"></span></div>
+            <div class="pb-copy">
+              <p class="pb-kick"><b>06</b><span>Today</span></p>
+              <h3>Still chasing it</h3>
+              <p>Today, I bring that curiosity, creativity and slightly obsessive love for storytelling into D2C brands as a <span class="em">Brand Manager.</span></p>
+              <p>So yes, this portfolio shows what I can do. I just thought you should first know why I love doing it. And if you're still here, hi again, I'm glad you are.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
     </div>
-    <div class="dn-card">
-      <svg class="icon" viewBox="0 0 48 48" fill="none">
-        <path d="M30 6C19 6 12 15 12 25c0 10.5 8.5 19 19 19 6.6 0 12.4-3.3 15.9-8.4C40.6 38 33.6 33.5 30.6 26 27.4 18 29 10.5 34.5 6.6 33 6.2 31.5 6 30 6Z" fill="var(--night)"/>
-        <circle cx="38" cy="12" r="1.6" fill="var(--brand)"/>
-        <circle cx="42" cy="20" r="1" fill="var(--brand)"/>
-      </svg>
-      <p class="label">02 · By night</p>
-      <h3>Scraping their socials</h3>
-      <p>Scraping brands' socials and websites to see how they talk to their audience, what content pillars they build from, and whether they stay consistent across every touchpoint.</p>
-    </div>
-  </div>
 
-  <div class="confession">
-    <p>At this point I have become a <span class="pink">toxic girlfriend</span> to every brand I study, honestly.</p>
+    <div class="pb-nav">
+      <button class="pb-btn" id="pbPrev" type="button" aria-label="Previous page"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="pb-dots" id="pbDots" role="tablist" aria-label="Pages"></div>
+      <span class="pb-count"><i id="pbNow">01</i> / 06</span>
+      <button class="pb-btn" id="pbNext" type="button" aria-label="Next page"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
   </div>
 </section>
+<script>
+(function(){
+  var pb=document.getElementById('pb'); if(!pb) return;
+  var stage=document.getElementById('pbStage'), track=document.getElementById('pbTrack'),
+      pages=[].slice.call(track.children), n=pages.length, i=0,
+      prev=document.getElementById('pbPrev'), next=document.getElementById('pbNext'),
+      now=document.getElementById('pbNow'), dotsEl=document.getElementById('pbDots');
+  pages.forEach(function(p,k){
+    var d=document.createElement('button'); d.className='pb-dot'; d.type='button';
+    d.setAttribute('role','tab'); d.setAttribute('aria-label','Page '+(k+1));
+    d.addEventListener('click',function(){go(k)}); dotsEl.appendChild(d);
+  });
+  var dots=[].slice.call(dotsEl.children);
+  function pad(x){return (x<9?'0':'')+(x+1)}
+  function height(){ stage.style.setProperty('--pbh', pages[i].firstElementChild.offsetHeight+'px'); }
+  function render(){
+    track.style.transform='translateX('+(-i*100)+'%)';
+    now.textContent=pad(i);
+    prev.disabled=i===0; next.disabled=i===n-1;
+    dots.forEach(function(d,k){d.setAttribute('aria-current',k===i?'true':'false')});
+    height();
+  }
+  function go(k){ i=Math.max(0,Math.min(n-1,k)); render(); }
+  prev.addEventListener('click',function(){go(i-1)});
+  next.addEventListener('click',function(){go(i+1)});
+  pb.addEventListener('keydown',function(e){ if(e.key==='ArrowLeft'){go(i-1)} if(e.key==='ArrowRight'){go(i+1)} });
+  var x0=null;
+  stage.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+  stage.addEventListener('touchend',function(e){ if(x0===null)return; var dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>45){ go(i+(dx<0?1:-1)); } x0=null; },{passive:true});
+  window.addEventListener('resize',height);
+  track.querySelectorAll('img').forEach(function(im){ im.addEventListener('load',height); });
+  render(); setTimeout(height,300);
+})();
+</script>
 
 <section class="journey" id="journey">
   <div class="head">
@@ -740,14 +904,16 @@
 <section class="work" id="work">
   <div class="head">
     <p class="eyebrow">Independent work</p>
-    <h2>Brand assignments</h2>
-    <p class="sub">Self-initiated assignments I made for a few brands. Pick a brand, or search for one from the bar at the top.</p>
+    <h2>For different brands</h2>
+    <p class="sub">Self-initiated work for a few brands. Pick one, or search from the bar at the top.</p>
   </div>
   <div class="bgrid">
     <a class="bbtn" id="b-fmc" style="--b:#111111" href="#work" aria-disabled="true" aria-label="Fix My Curls, coming soon"><span class="cat">Haircare</span><img class="lg-img" src="fmc.png" alt="Fix My Curls"><span class="st"><i>Coming soon</i></span></a>
     <a class="bbtn" id="b-fn" style="--b:#111111" href="#work" aria-disabled="true" aria-label="Fraganote, coming soon"><span class="cat">Fragrance</span><img class="lg-img" src="fn.png" alt="Fraganote"><span class="st"><i>Coming soon</i></span></a>
     <a class="bbtn" id="b-pp" style="--b:#111111" href="#work" aria-disabled="true" aria-label="Protein Pantry, coming soon"><span class="cat">Protein foods</span><img class="lg-img" src="pp.svg" alt="Protein Pantry"><span class="st"><i>Coming soon</i></span></a>
     <a class="bbtn" id="b-ts" style="--b:#8D3526" href="#work" aria-disabled="true" aria-label="The 1970 Shop, coming soon"><span class="cat">Snacks</span><img class="lg-img" src="ts.png" alt="The 1970 Shop"><span class="st"><i>Coming soon</i></span></a>
+    <a class="bbtn dark live" id="b-matiks" style="--b:#B1FA63" href="#work" aria-haspopup="dialog" aria-label="View Matiks monetization deck"><span class="cat">Gaming app</span><img class="lg-logo" src="matiks.svg" alt="Matiks"><span class="st"><i class="go">View deck &#8599;</i></span></a>
+    <a class="bbtn live" id="b-yoga" style="--b:#E1116A" href="https://yogabar-avira.netlify.app" target="_blank" rel="noopener" aria-label="Yogabar project (opens site)"><span class="cat">Nutrition</span><img class="lg-badge" src="yoga.png" alt="Yogabar"><span class="st"><i class="go">View site &#8599;</i></span></a>
   </div>
 </section>
 
@@ -757,7 +923,9 @@
     {id:'b-fmc',name:'Fix My Curls',c:'#111111',k:'fix my curls curly curl hair haircare beauty fmc'},
     {id:'b-fn',name:'Fraganote',c:'#111111',k:'fraganote perfume fragrance scent'},
     {id:'b-pp',name:'Protein Pantry',c:'#111111',k:'protein pantry nutrition food health high protein soya chaap'},
-    {id:'b-ts',name:"The 1970 Shop",c:'#8D3526',k:"the 1970s 1970 shop snacks biscuits mathri laddoo nostalgia retro 70s"}
+    {id:'b-ts',name:"The 1970 Shop",c:'#8D3526',k:"the 1970s 1970 shop snacks biscuits mathri laddoo nostalgia retro 70s"},
+    {id:'b-matiks',name:'Matiks',c:'#3A2D7C',k:'matiks game gaming app puzzle play'},
+    {id:'b-yoga',name:'Yogabar',c:'#111111',k:'yogabar yoga bar protein nutrition snack bar health'}
   ];
   var input=document.getElementById('rs'), form=input&&input.form, drop=document.getElementById('sdrop'), act=-1, list=[];
   if(!input) return;
@@ -789,6 +957,37 @@
   drop.addEventListener('mousedown',function(e){var li=e.target.closest('li[data-i]'); if(li){e.preventDefault(); jump(list[+li.dataset.i]);}});
   document.addEventListener('click',function(e){ if(!form.contains(e.target)) drop.hidden=true; });
   Array.prototype.forEach.call(document.querySelectorAll('.bbtn[aria-disabled="true"]'),function(a){a.addEventListener('click',function(e){e.preventDefault()})});
+})();
+</script>
+
+<div class="deck" id="matiksDeck" hidden role="dialog" aria-modal="true" aria-label="Matiks Monetization Deck">
+  <div class="deck-bar">
+    <span class="deck-ttl">Matiks &middot; Monetization Deck</span>
+    <button class="deck-x" id="deckClose" type="button" aria-label="Close deck">&times;</button>
+  </div>
+  <div class="deck-body" id="deckBody">
+        <img src="matiks-01.jpg" alt="Matiks deck slide 1" loading="lazy">
+        <img src="matiks-02.jpg" alt="Matiks deck slide 2" loading="lazy">
+        <img src="matiks-03.jpg" alt="Matiks deck slide 3" loading="lazy">
+        <img src="matiks-04.jpg" alt="Matiks deck slide 4" loading="lazy">
+        <img src="matiks-05.jpg" alt="Matiks deck slide 5" loading="lazy">
+        <img src="matiks-06.jpg" alt="Matiks deck slide 6" loading="lazy">
+        <img src="matiks-07.jpg" alt="Matiks deck slide 7" loading="lazy">
+        <img src="matiks-08.jpg" alt="Matiks deck slide 8" loading="lazy">
+        <img src="matiks-09.jpg" alt="Matiks deck slide 9" loading="lazy">
+        <img src="matiks-10.jpg" alt="Matiks deck slide 10" loading="lazy">
+  </div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('b-matiks'), modal=document.getElementById('matiksDeck'), close=document.getElementById('deckClose');
+  if(!btn||!modal) return;
+  function open(e){ if(e)e.preventDefault(); modal.hidden=false; document.body.classList.add('deck-open'); try{close.focus()}catch(_){} }
+  function shut(){ modal.hidden=true; document.body.classList.remove('deck-open'); try{btn.focus()}catch(_){} }
+  btn.addEventListener('click',open);
+  close.addEventListener('click',shut);
+  modal.addEventListener('click',function(e){ if(e.target===modal||e.target===document.getElementById('deckBody')) shut(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!modal.hidden) shut(); });
 })();
 </script>
 
